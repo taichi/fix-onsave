@@ -1,0 +1,52 @@
+{
+    "name": "fix-onsave",
+    "displayName": "fix-onSave",
+    "description": "fix eslint error on save.",
+    "version": "0.0.1",
+    "publisher": "taichi",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Other",
+        "Languages"
+    ],
+    "license": "MIT",
+    "activationEvents": [
+        "onLanguage:javascript",
+        "onLanguage:javascriptreact"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "configuration": {
+            "title": "fix on save configuration.",
+            "properties": {
+                "fix.onSave": {
+                    "description": "Automatically format and fix eslint errors files on save.",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    },
+    "extensionDependencies": [
+        "dbaeumer.vscode-eslint"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/taichi/fix-onsave"
+    },
+    "bugs": {
+        "url": "https://github.com/taichi/fix-onsave/issues"
+    }
+}
