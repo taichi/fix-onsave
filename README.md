@@ -11,8 +11,11 @@ You must install [ESlint](https://marketplace.visualstudio.com/items?itemName=db
 
 This extension contributes the following settings:
 
-* `fix.onSave`: by default is `true`. if you set `true`, Automatically format and fix problems on save.
+* `fix.onSave`: by default is `true`. if you set `true`, Automatically fix problems on save.
 
 ## Releases
+### 0.1.0: 2016-10-12
+* fix save loop problems
+
 ### 0.0.1: 2016-09-30
 * initial release

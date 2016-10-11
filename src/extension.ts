@@ -1,10 +1,13 @@
 'use strict';
-import { commands, workspace,
+import {
+    commands, workspace,
     ExtensionContext,
-    TextDocument, TextEdit, WorkspaceEdit } from 'vscode';
+    TextDocumentWillSaveEvent,
+    TextDocument, TextEdit, WorkspaceEdit
+} from 'vscode';
 
 export function activate(context: ExtensionContext) {
-    workspace.onDidSaveTextDocument(onSave);
+    workspace.onWillSaveTextDocument(onWillSave);
 }
 
 const supported_languages = ["javascript", "javascriptreact"];
@@ -12,19 +15,9 @@ function supports(languageId: string): boolean {
     return -1 < supported_languages.indexOf(languageId);
 }
 
-function onSave(doc: TextDocument) {
+function onWillSave(event: TextDocumentWillSaveEvent) {
+    let doc = event.document;
     if (supports(doc.languageId) && workspace.getConfiguration("fix").get("onSave")) {
-        let t = commands.executeCommand("vscode.executeFormatDocumentProvider", doc.uri, {});
-        t.then((edits: TextEdit[]) => {
-            let we = new WorkspaceEdit();
-            we.set(doc.uri, edits);
-            return workspace.applyEdit(we).then(() => {
-                return commands.executeCommand("eslint.executeAutofix");
-            }).then(() => doc.save());
-        });
-    }
-
-}
-
-export function deactivate() {
+        commands.executeCommand("eslint.executeAutofix");
+    };
 }
