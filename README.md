@@ -1,3 +1,7 @@
+# Duplicated
+
+use [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 1.0.8 or newer.
+
 # fix-onsave
 
 This extension executes format and applies ESLint auto-fix resolutions to all fixable problems.
